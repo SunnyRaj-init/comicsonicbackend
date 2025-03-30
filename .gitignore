@@ -1,0 +1,11 @@
+MtoAFrontend/
+*.jpg
+*.pdf
+*.mp3
+.venv
+cached_driver.py
+driver.py
+*.txt
+pdf_driver.py
+gcloudTTS.py
+*.json
