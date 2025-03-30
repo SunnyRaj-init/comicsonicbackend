@@ -42,7 +42,7 @@ AudioSegment.ffprobe ="./ffmpeg/bin/ffprobe.exe"
 audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.MP3)
 audio_files = []
 # HITTING GEMINI
-genai.configure(api_key="AIzaSyAEdm6uJqhP81rCIDJJ5RK9VK8Qo_TsL-M")
+genai.configure(api_key="give your api key")
 model = genai.GenerativeModel("gemini-1.5-flash")
 #setting up flask
 app = Flask(__name__)
@@ -74,7 +74,7 @@ def upload_file():
     for line in out_parsed.split("\n"):
         # Set the text input to be synthesized
         if i%5==0:
-            time.sleep(30)
+            time.sleep(15)
         if len(line)>0:
             synthesis_input = texttospeech.SynthesisInput(text=line[17:])
 
@@ -106,12 +106,12 @@ def upload_file():
             i=i+1
     # creating the clubbed audio
     # Initialize audio segment
-    full_audio = AudioSegment.silent(duration=2000)
+    full_audio = AudioSegment.silent(duration=1000)
 
     # Concatenate audio segments with silence in between
     for file in audio_files:
         sound = AudioSegment.from_mp3(file)
-        silence = AudioSegment.silent(duration=2000)
+        silence = AudioSegment.silent(duration=1000)
         full_audio += sound + silence
         os.remove(file)  # Remove the individual part files after combining
     # Save the final audio output to a file
