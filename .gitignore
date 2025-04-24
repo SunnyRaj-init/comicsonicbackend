@@ -9,3 +9,4 @@ driver.py
 pdf_driver.py
 gcloudTTS.py
 *.json
+.env.local

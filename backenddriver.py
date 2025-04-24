@@ -21,7 +21,7 @@ IGNORE ANY SYMBOLS OR CHARACTERS FROM ANOTHER LANGUAGE\noutput should look like:
 only provide the required output; do not specify the page numbers and present the output in lower-cased
 \n DO NOT USE SHORT HAND NOTATIONS FOR en-US-Standard-D or en-US-Standard-F; you have to represent them fully as mentioned dont use en-US-F or en-US-D
 """
-
+from dotenv import load_dotenv
 from flask import Flask, request,jsonify,send_file
 from flask_cors import CORS,cross_origin
 import base64
@@ -30,7 +30,7 @@ from google.cloud import texttospeech
 from pydub import AudioSegment
 import os
 import time
-
+load_dotenv("./.env.local")
 #TEXT TO SPEECH INTIATION BLOCK
 # Instantiates a client
 client = texttospeech.TextToSpeechClient()
@@ -42,7 +42,7 @@ AudioSegment.ffprobe ="./ffmpeg/bin/ffprobe.exe"
 audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.MP3)
 audio_files = []
 # HITTING GEMINI
-genai.configure(api_key="give your api key")
+genai.configure(api_key=os.getenv("API_KEY"))
 model = genai.GenerativeModel("gemini-1.5-flash")
 #setting up flask
 app = Flask(__name__)
