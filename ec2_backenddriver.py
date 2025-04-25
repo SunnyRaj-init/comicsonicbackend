@@ -47,12 +47,12 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 
 # SETTING UP FLASK
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://10.5.0.2:3000"}})
+CORS(app, resources={r"/*": {"origins": "https://comicsonicfrontend.vercel.app/"}})
 
 @app.after_request
 def add_cors_headers(response):
     """Add necessary CORS headers to every response."""
-    response.headers.add("Access-Control-Allow-Origin", "http://10.5.0.2:3000")
+    response.headers.add("Access-Control-Allow-Origin", "https://comicsonicfrontend.vercel.app/")
     response.headers.add("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
     response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
     response.headers.add("Access-Control-Allow-Credentials", "true")
@@ -63,7 +63,7 @@ def upload_file():
     # Handle OPTIONS preflight requests
     if request.method == 'OPTIONS':
         response = make_response()
-        response.headers.add("Access-Control-Allow-Origin", "http://10.5.0.2:3000")
+        response.headers.add("Access-Control-Allow-Origin", "https://comicsonicfrontend.vercel.app/")
         response.headers.add("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
         response.headers.add("Access-Control-Allow-Credentials", "true")
